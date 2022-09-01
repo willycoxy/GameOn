@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(18,44,62);
+}
+
+.navbar {
+    background-color: rgb(13,32,45);
+}
+
+.navbar a {
+    color: orange;
+}
