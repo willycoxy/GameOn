@@ -90,6 +90,14 @@ router.get("/", (req, res) => {
     });
   });
 
+  router.get('/liveChat', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('liveChat');
+  });
 
 
 
