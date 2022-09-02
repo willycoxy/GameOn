@@ -90,16 +90,43 @@ router.get("/", (req, res) => {
     });
   });
 
-  router.get('/liveChat', (req, res) => {
+  router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
       res.redirect('/');
       return;
     }
   
-    res.render('liveChat');
+    res.render('login');
   });
 
+  router.get('/chatroom', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('chatroom');
+  });
 
+  router.get('/homepage', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('homepage');
+  });
+
+  router.get('/register', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('register');
+  });
+
+  
 
 
 module.exports = router;

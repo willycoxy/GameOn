@@ -15,20 +15,33 @@
     <header class="navbar d-flex p-3">
       <h1 class="text-white">Game On</h1>
       <nav>
-        <a href="#" class="btn btn-outline-light">Log in</a>
-        <a href="#" class="btn btn-outline-light">Register</a>
+        
+        
+<li>{{#if loggedIn}}
+                          
+                            <button id="logout" class="btn-no-style">Logout</button>
+                          
+                             
+        {{else}}
+        
+        <li>
+          <a href="/register" class="btn btn-outline-light">Register</a>
+        <a href="/login" class="btn btn-outline-light">Log in</a>
+        </li>
+        {{/if}}
+
       </nav>
     </header>
     <div class="navbar d-flex">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="/homepage">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Forums</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/liveChat">Live Chat</a>
+                <a class="nav-link" href="/chatroom">Live Chat</a>
             </li>
         </ul>
     </div>
@@ -38,6 +51,9 @@
     <footer>
     </footer>
   </div>
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
 </body>
 
 </html>
