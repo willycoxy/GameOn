@@ -1,0 +1,80 @@
+<h1>Forums</h1>
+
+
+
+<section>
+  <h2>Create New Post</h2>
+
+  <form class="new-post-form">
+    <div>
+      <label for="post-title">Title</label>
+      <input type="text" id="post-title" name="post-title" />
+    </div>
+    <div>
+      <label for="post-url">Content</label>
+      <input id="post-url" name="post-content" />
+    </div>
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+
+{{> post-info post}}
+
+<ol class="post-list">
+    {{#each posts as |post|}}
+  <li>
+   {{> post-info post }}
+  </li>
+  {{/each}}
+</ol>
+
+
+{{!-- {{#if posts.length}}
+<section>
+  <h2>Your Posts</h2>
+  <ol>
+    {{#each posts as |post|}}
+    <li>
+      {{> post-info post}}
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}} --}}
+
+<script src="/javascript/add-post.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+{{!-- 
+<h4>Hockey</h4>
+
+<section>
+    <h2>Create New Post</h2>
+
+    <form class="new-post-form">
+        <div>
+            <label for="post-title">Title</label>
+            <input type="text" id="post-title" name="post-title">
+        </div>
+        <div>
+            <label for="post-content">Content</label>
+            <input id="post-content" name="post-content">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</section>
+
+
+<h4>Baseball</h4>
+<h4>BasketBall</h4>
+<h4>Football</h4> --}}

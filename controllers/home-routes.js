@@ -52,6 +52,11 @@ router.get("/", (req, res) => {
     res.render("register");
   });
 
+  router.get("/forums", (req, res) => {
+
+    res.render("forums");
+  });
+
   router.get("/post/:id", (req, res) => {
     Post.findOne({
       where: {
