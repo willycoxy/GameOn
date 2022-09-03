@@ -30,7 +30,7 @@ body {
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
-	background: var(--light-color);
+	background-color: rgb(18,44,62);
 	margin: 20px;
 }
 
