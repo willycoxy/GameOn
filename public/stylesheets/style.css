@@ -9,3 +9,18 @@ body {
 .navbar a {
     color: orange;
 }
+
+.policy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: orange;
+    margin:auto;
+    width: 75%;
+}
+
+li {
+    margin: 10px 0;
+    text-align: left;
+}
