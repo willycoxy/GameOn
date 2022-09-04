@@ -54,3 +54,25 @@ li {
     text-align: left;
 }
 
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: orange;
+    margin: auto;
+    width: 75%;
+}
+
+.home-body-containers {
+    text-align: left;
+    background-color: rgb(30, 56, 75);
+}
+
+.body-node {
+    color: aliceblue;
+}
+
+.node-title {
+    color: orange;
+}
