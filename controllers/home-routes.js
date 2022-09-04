@@ -108,6 +108,8 @@ router.get("/", (req, res) => {
     res.render('chatroom');
   });
 
+  
+
   router.get('/homepage', (req, res) => {
     if (req.session.loggedIn) {
       res.redirect('/');

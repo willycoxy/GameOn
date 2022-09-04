@@ -6,10 +6,28 @@ const exphbs = require("express-handlebars");
 const session = require("express-session");
 const helpers = require("./utils/helpers");
 
+//add on 
+const http = require('http');
+
+const PORT = process.env.PORT || 3071;
 
 const app = express();
+const server = http.createServer(app);
+
+
+const io = require('socket.io')(server, {cors:{origin:"*"}});
+
+io.on('connection', (socket) => {
+    console.log("User connected Socket Id:" +socket.id);
+});
+
+
+
+
+
 const hbs = exphbs.create({ helpers });
-const PORT = process.env.PORT || 3071;
+
+
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
@@ -35,7 +53,26 @@ app.use(session(sess));
 // turns on routes
 app.use(routes);
 
+/*
+io.on("connection", (socket) => {
+    // send a message to the client
+    console.log("Hello socket IO  on");
+});
+*/
+
 // turns on connection to database and server
 sequelize.sync({ force: true }).then(() => {
-    app.listen(PORT, () => console.log("Now listening"));
+    server.listen(PORT, () => console.log("Now listening"));
 });
+
+
+server.on("connection", (socket) => {
+    // send a message to the client
+    console.log("Hello server on");
+    console.log(socket.on.name);
+    socket.on('message', (data) =>{ 
+        console.log("Message Socket man" + socket.broadcast('message',data));
+    });
+   
+});
+
