@@ -10,6 +10,35 @@ body {
     color: orange;
 }
 
+.navbar button {
+    color: orange;
+}
+
+.dropdown-menu {
+    width: 300px;
+    background-color: rgb(13,32,45);
+    color: orange;
+    border: 2px solid rgb(18,44,62);
+}
+
+.modal-content {
+    background-color: rgb(13,32,45);
+    color: orange;
+    border: 2px solid rgb(18,44,62);
+}
+
+.register-form {
+    color: orange;
+}
+
+.register-form button {
+    color: orange;
+}
+
+.register-form small {
+    color: orange;
+}
+
 .policy {
     display: flex;
     flex-direction: column;
@@ -24,3 +53,4 @@ li {
     margin: 10px 0;
     text-align: left;
 }
+

@@ -40,7 +40,7 @@ router.get("/", (req, res) => {
       });
   });
 
-  router.get("/login", (req, res) => {
+  router.get("/register", (req, res) => {
 
     // redirect to homepage if once logged in
     if (req.session.loggedIn) {
@@ -49,7 +49,7 @@ router.get("/", (req, res) => {
     }
 
 
-    res.render("login");
+    res.render("register");
   });
 
   router.get("/post/:id", (req, res) => {
