@@ -8,21 +8,17 @@ const helpers = require("./utils/helpers");
 
 //add on 
 const http = require('http');
+const formatMessage = require("./utils/messages");
+const { SocketAddress } = require("net");
 
-const PORT = process.env.PORT || 3071;
+
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 const server = http.createServer(app);
 
 
 const io = require('socket.io')(server, {cors:{origin:"*"}});
-
-io.on('connection', (socket) => {
-    console.log("User connected Socket Id:" +socket.id);
-});
-
-
-
 
 
 const hbs = exphbs.create({ helpers });
@@ -53,26 +49,56 @@ app.use(session(sess));
 // turns on routes
 app.use(routes);
 
-/*
-io.on("connection", (socket) => {
-    // send a message to the client
-    console.log("Hello socket IO  on");
-});
-*/
+
+
+
+
 
 // turns on connection to database and server
 sequelize.sync({ force: true }).then(() => {
-    server.listen(PORT, () => console.log("Now listening"));
+    server.listen(PORT, () =>{
+        console.log(`\n##############################################################`);
+        console.log(`Server side Now listening on port number  ${PORT}`);
+        console.log(`\n##############################################################`);
+    });
 });
 
 
 server.on("connection", (socket) => {
     // send a message to the client
-    console.log("Hello server on");
-    console.log(socket.on.name);
-    socket.on('message', (data) =>{ 
-        console.log("Message Socket man" + socket.broadcast('message',data));
-    });
-   
+
+
+   socket.emit("message", console.log("Server is on and Welcome to Game On"));
+   // console.log (socket.emit("message", formatMessage(socket, "Welcome to ChatCord!")));
+
 });
 
+
+const sportGameRooms = ["Game On Room", "Sport Room"];
+
+io.of("/chatroom").on('connection', (socket) => {
+   
+    console.log(`Server side using  - Socket Id: ${socket.id}`);
+    socket.emit("welcome", "Welcome you are connected back end -Socket ID#:"+socket.id+"\n"); 
+    socket.emit("testing",`You are the socket id that you are using #${socket.id}`);
+    socket.emit('testing', `Socket id# ${socket.id} and his first two caracters : ${socket.id.substr(0,2)}\n` ); 
+
+   
+
+
+    socket.on("joinRoom", (room) => {
+        
+        if(sportGameRooms.includes(room)){
+        socket.join(room);
+        io.of("/chatroom").in(room).emit("newUser", "New Player ID: "+socket.id +" has join the " + room);
+        return socket.emit("success", "You have succesfully joined "+ room + " room");
+        } else{
+            return socket.emit("err", "Error no Room named ");
+        }
+
+    });
+
+    
+});
+
+module.exports  = PORT;

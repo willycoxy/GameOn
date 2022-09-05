@@ -1,30 +1,54 @@
 
-  async function signupFormHandler(event) {
-    event.preventDefault();
-  
+const io =require("socket.io-client");
+const PORT = process.env.PORT || 3000;
+let socket = io.connect(`http://localhost:${PORT}/chatroom`);
 
-    const message1 = document.querySelector('#fas-fa-paper-plane').value.trim();
-  
-    if (message1) {
-        console.log("message"+ message1);
-      const response = await fetch('/api/users', {
-        method: 'post',
-        body: JSON.stringify(
-          message1
-        ),
-        headers: { 'Content-Type': 'application/json' }
-      });
-  
-      if (response.ok) {
-        document.location.replace('/homepage');
-      } else {
-        alert(response.statusText);
-      }
-    }
-  }
-  
+console.log(`\n##############################################################`);
+console.log(`Front End side console port number: ${PORT}`);
+console.log(`\n##############################################################`);
 
-  
-  document.querySelector('.chat-form-container').addEventListener('submit', signupFormHandler);
+socket.on("welcome", (data) => {
+    
+    console.log(`\n***********************************************************************`);
+    console.log(`Front-end  client console side using  - Socket Id: ${socket.id} \n ${data} `);
+});
+
+socket.on("testing",(res) => console.log(res));
+
+socket.emit("joinRoom","Sport Room"); 
+
+socket.on("newUser", (res) => console.log(res));
+
+socket.on("err", (err) => { console.log(`${err}`);
+console.log(`\n***********************************************************************`);
+});
+
+socket.on("success", (res) =>{ console.log(`${res}`);
+console.log(`\n***********************************************************************`);
+});
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function sendMessage() {
+//     let msg = document.getElementById("chat-input").value;
+//     console.log("mesage: ", msg);
+// }
+
+//const btn = document.getElementById("submitBtn");
+
+//const btn  = document.querySelector('#submitBtn');
+
+//document.querySelector("#chat-form").addEventListener('submit', sendMessage);
