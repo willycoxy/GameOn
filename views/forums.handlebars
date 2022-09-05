@@ -1,49 +1,38 @@
-<h1>Forums</h1>
+<h1 class="text-center pb-5">Forums</h1>
 
 
 
-<section>
-  <h2>Create New Post</h2>
-
-  <form class="new-post-form">
-    <div>
-      <label for="post-title">Title</label>
-      <input type="text" id="post-title" name="post-title" />
+<div class="row">
+  <div class="guidlines col-12">
+    <div class="text-center">
+        <p class="mt-5">Please be mindful of others when adding a post to these forums. We will not tolerate any racism or profanity.</p>
     </div>
-    <div>
-      <label for="post-url">Content</label>
-      <input id="post-url" name="post-content" />
+    <div class="text-center mb-5">
+          <a href="/add-thread"><button class="btn btn-outline-light">Add Thread</button></a>
     </div>
-    <button type="submit" class="btn">Submit</button>
-  </form>
-</section>
+   </div>   
+ </div>
 
-{{> post-info post}}
-
-<ol class="post-list">
-    {{#each posts as |post|}}
-  <li>
-   {{> post-info post }}
-  </li>
-  {{/each}}
-</ol>
+{{!-- {{> post-info post}} --}}
 
 
-{{!-- {{#if posts.length}}
+
+
+{{#if posts.length}}
 <section>
-  <h2>Your Posts</h2>
+  <h2 class="ml-3 text-center mt-3">Posts</h2>
   <ol>
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+      {{!-- <a href="/forums/edit/{{post.id}}" class="edit-link">Edit post</a> --}}
     </li>
     {{/each}}
   </ol>
 </section>
-{{/if}} --}}
+{{/if}}
 
-<script src="/javascript/add-post.js"></script>
+
 
 
 
