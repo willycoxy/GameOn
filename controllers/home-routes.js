@@ -113,12 +113,21 @@ router.get("/", (req, res) => {
   });
 
   router.get('/policy', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
+    // if (req.session.loggedIn) {
+    //   res.redirect('/');
+    //   return;
+    // }
 
     res.render('policy');
+  });
+
+  router.get('/homepage', (req, res) => {
+    // if (req.session.loggedIn) {
+    //   res.redirect('/');
+    //   return;
+    // }
+
+    res.render('homepage');
   });
 
 
