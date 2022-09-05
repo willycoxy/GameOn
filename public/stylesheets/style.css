@@ -27,6 +27,10 @@ body {
     border: 2px solid rgb(18,44,62);
 }
 
+.guidlines button {
+    color: orange;
+}
+
 .register-form {
     color: orange;
 }
@@ -37,6 +41,51 @@ body {
 
 .register-form small {
     color: orange;
+}
+
+h1 {
+    color: orange;
+}
+
+h2 {
+    color: orange;
+}
+
+h4 {
+    color: orange;
+}
+
+form {
+    color: orange;
+}
+
+.post {
+    color: orange;
+}
+
+.new-post-form button {
+    color: orange;
+}
+
+.h3 {
+    color: orange;
+}
+
+.post {
+   
+    background-color: rgb(13,32,45);;
+}
+
+.forums {
+    border-bottom: 2px solid rgb(13,32,45);
+}
+
+.guidlines p {
+    color: orange;
+}
+
+.guidlines {
+    border-bottom: 2px solid rgb(13,32,45);
 }
 
 .policy {
@@ -52,5 +101,28 @@ body {
 li {
     margin: 10px 0;
     text-align: left;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: orange;
+    margin: auto;
+    width: 75%;
+}
+
+.home-body-containers {
+    text-align: left;
+    background-color: rgb(30, 56, 75);
+}
+
+.body-node {
+    color: aliceblue;
+}
+
+.node-title {
+    color: orange;
 }
 
