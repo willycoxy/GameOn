@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
 
   router.get("/register", (req, res) => {
 
-    // redirect to homepage if once logged in
+    // redirect to register if once logged in
     if (req.session.loggedIn) {
       res.redirect("/");
       return;
@@ -51,6 +51,28 @@ router.get("/", (req, res) => {
 
     res.render("register");
   });
+
+  router.get("/add-thread", (req, res) => {
+
+    // redirect to register if once logged in
+    // if (req.session.loggedIn) {
+    //   res.redirect("/");
+    //   return;
+    // }
+
+
+    res.render("add-thread");
+  });
+
+  // router.get("/forums", (req, res) => {
+
+  //   // if (req.session.loggedIn) {
+  //   //   res.redirect("/");
+  //   //   return;
+  //   // }
+
+  //   res.render("forums");
+  // });
 
   router.get("/post/:id", (req, res) => {
     Post.findOne({
