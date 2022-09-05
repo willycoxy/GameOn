@@ -87,3 +87,42 @@ form {
 .guidlines {
     border-bottom: 2px solid rgb(13,32,45);
 }
+
+.policy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: orange;
+    margin:auto;
+    width: 75%;
+}
+
+li {
+    margin: 10px 0;
+    text-align: left;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: orange;
+    margin: auto;
+    width: 75%;
+}
+
+.home-body-containers {
+    text-align: left;
+    background-color: rgb(30, 56, 75);
+}
+
+.body-node {
+    color: aliceblue;
+}
+
+.node-title {
+    color: orange;
+}
+

@@ -112,8 +112,14 @@ router.get("/", (req, res) => {
     });
   });
 
+  router.get('/policy', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
 
-
+    res.render('policy');
+  });
 
 
 module.exports = router;
