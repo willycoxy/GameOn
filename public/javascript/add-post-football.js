@@ -16,7 +16,7 @@ async function newFormHandler(event) {
     });
 
     if (response.ok) {
-        document.location.replace("/forums");
+        document.location.replace("/forums-football");
     } else {
         alert(response.statusText);
     }
