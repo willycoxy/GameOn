@@ -99,5 +99,14 @@ router.get("/", (req, res) => {
     res.render('policy');
   });
 
+  router.get('/livechat', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+
+    res.render('livechat');
+  });
+
 
 module.exports = router;
