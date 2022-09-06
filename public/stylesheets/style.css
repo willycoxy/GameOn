@@ -71,6 +71,10 @@ form {
     color: orange;
 }
 
+.single-post button {
+    color: orange;
+}
+
 .post {
    
     background-color: rgb(13,32,45);;

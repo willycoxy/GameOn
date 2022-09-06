@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Post, User, Comment } = require("../models");
+const { Post, User, Comment, Love, Dislike } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", withAuth, (req, res) => {
@@ -8,7 +8,10 @@ router.get("/", withAuth, (req, res) => {
         where: {
             user_id: req.session.user_id
         },
-        attributes: ["id", "post_content", "title", "created_at"],
+        attributes: ["id", "post_content", "title", "created_at",
+        [sequelize.literal('(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)'), 'love_count'],
+        [sequelize.literal('(SELECT COUNT(*) FROM dislike WHERE post.id = dislike.post_id)'), 'dislike_count']
+      ],
         include: [
             {
                 model: Comment, 
@@ -72,6 +75,32 @@ router.get("/edit/:id", withAuth, (req, res) => {
       .catch(err => {
         res.status(500).json(err);
       });
+  });
+
+  router.put('/love', (req, res) => {
+    // make sure the session exists first
+    if (req.session) {
+      // pass session id along with all destructured properties on req.body
+      Post.love({ ...req.body, user_id: req.session.user_id }, { Love, Comment, User })
+        .then(updatedLikedData => res.json(updatedLikedData))
+        .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+        });
+    }
+  });
+
+  router.put('/dislike', (req, res) => {
+    // make sure the session exists first
+    if (req.session) {
+      // pass session id along with all destructured properties on req.body
+      Post.dislike({ ...req.body, user_id: req.session.user_id }, { Dislike, Comment, User })
+        .then(updatedDislikedData => res.json(updatedDislikedData))
+        .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+        });
+    }
   });
   
 
