@@ -5,8 +5,10 @@
     <div class="form group col-6 justify-content-center">
     <label for="comment section">Comment</label>
     <textarea class="form-control" id="comment-text" rows="3" name="comment-body"></textarea>
-    <div>
+    <div class="single-post">
         <button type="submit" class="btn btn-outline-light mt-3 mb-5">Submit</button>
+        <button type="submit" class="like-btn btn btn-outline-light mt-3 mb-5">Like</button>
+         <button type="submit" class="dislike-btn btn btn-outline-light mt-3 mb-5">Dislike</button>
     </div>
 </div>
 </form>
@@ -14,6 +16,8 @@
 
 {{#if loggedIn}}
 <script src="/javascript/comment.js"></script>
+<script src="/javascript/like.js"></script>
+<script src="/javascript/dislike.js"></script>
 {{/if}}
 
 {{> comments post.comments}}
