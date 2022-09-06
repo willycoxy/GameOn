@@ -1,12 +1,19 @@
 
- 
+
 
  function loginFormHandler1(event) {
     event.preventDefault();
   
     
-    
+  
     const message = document.querySelector('#message1').value.trim();
+    /*
+    socket.emit('livechat', {message: message});
+
+    var el10 = document.createElement('li');
+    el10.innerHTML = message.message;
+    document.querySelector('#ul1').appendChild(el10);
+*/
 
     var el2 = document.createElement('div');
     el2.classList.add('message');
@@ -50,8 +57,7 @@ socket.on('livechat',function(data){
   
     var el8 = document.createElement('li');
 el8.innerHTML = `${data} `;
-//socket.emit('livechat',{ description: message +'Hey, welcome!'});
- //  socket.broadcast.emit('livechat',{ description: message + ' clients connected!'});
+ //socket.emit('livechat', {message: data});
 document.querySelector('#ul1').appendChild(el8);
 });
  

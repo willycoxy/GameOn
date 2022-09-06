@@ -35,7 +35,7 @@ io.on('connection', function(socket){
 
   
     socket.emit('livechat', 'Game On live chat is connected!');
-    socket.broadcast.emit('livechat', ' Live chat Hello world Server Side!');
+    socket.broadcast.emit('livechat', 'Server Side say: Live chat Hello world !');
 
 
 
