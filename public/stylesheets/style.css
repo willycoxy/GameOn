@@ -52,7 +52,7 @@ h2 {
 }
 
 h4 {
-    color: orange;
+    color: aliceblue;
 }
 
 form {
@@ -114,15 +114,8 @@ li {
 }
 
 .home-body-containers {
+    justify-content: left;
     text-align: left;
     background-color: rgb(30, 56, 75);
+    border: 4px solid rgb(109, 144, 168);
 }
-
-.body-node {
-    color: aliceblue;
-}
-
-.node-title {
-    color: orange;
-}
-
