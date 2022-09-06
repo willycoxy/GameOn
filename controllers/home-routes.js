@@ -64,6 +64,22 @@ router.get("/", (req, res) => {
     res.render("add-thread");
   });
 
+  router.get("/add-thread-baseball", (req, res) => {
+    res.render("add-thread-baseball");
+  });
+
+  router.get("/add-thread-basketball", (req, res) => {
+    res.render("add-thread-basketball");
+  });
+
+  router.get("/add-thread-football", (req, res) => {
+    res.render("add-thread-football");
+  });
+
+  router.get("/add-thread-hockey", (req, res) => {
+    res.render("add-thread-hockey");
+  });
+
   // router.get("/forums", (req, res) => {
 
   //   // if (req.session.loggedIn) {
