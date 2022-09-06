@@ -113,20 +113,14 @@ router.get("/", (req, res) => {
   });
 
   router.get('/policy', (req, res) => {
-    // if (req.session.loggedIn) {
-    //   res.redirect('/');
-    //   return;
-    // }
-
     res.render('policy');
   });
 
-  router.get('/homepage', (req, res) => {
-    // if (req.session.loggedIn) {
-    //   res.redirect('/');
-    //   return;
-    // }
+  router.get('/livechat', (req, res) => {
+    res.render('livechat');
+  });
 
+  router.get('/homepage', (req, res) => {
     res.render('homepage');
   });
 

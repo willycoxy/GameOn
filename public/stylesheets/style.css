@@ -13,6 +13,9 @@ body {
 .navbar button {
     color: orange;
 }
+.container-fluid{
+    width: 100%;
+}
 
 .dropdown-menu {
     width: 300px;
@@ -125,4 +128,17 @@ li {
 .node-title {
     color: orange;
 }
+
+.footer {
+    color: orange;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.scoreboard {
+    color: orange;
+}
+
+
 
