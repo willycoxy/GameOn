@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 const options = {
 	method: 'GET',
 	headers: {
@@ -8,8 +6,19 @@ const options = {
 	}
 };
 
-fetch('https://api-nba-v1.p.rapidapi.com/games?live=all', options)
+fetch('https://api-nba-v1.p.rapidapi.com/games?id=52', options)
 	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
-    console.log(response)
+    .then(data =>{
+        console.log(data)
+
+        document.getElementById('awaylogo').src = data.response[0].teams.visitors.logo
+        document.getElementById('homelogo').src = data.response[0].teams.home.logo
+        document.getElementById('arena').textContent = `Arena: ${data.response[0].arena.name}`
+        document.getElementById('home').textContent = data.response[0].teams.home.code
+        // document.getElementById('period').textContent = data.response[0].periods.current
+        // document.getElementById('duration').textContent = data.response[0].status.long
+        document.getElementById('away').textContent = data.response[0].teams.visitors.code
+        // document.getElementById('awaypoints').textContent = data.response[0].scores.visitors.points
+        // document.getElementById('homepoints').textContent = data.response[0].scores.home.points
+        document.getElementById('officials').textContent = `Lead Ref: ${data.response[0].officials[1]}`
+	 })
