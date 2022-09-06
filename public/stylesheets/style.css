@@ -35,6 +35,7 @@ body {
 }
 
 ul {
+    
 	list-style: none;
 }
 
@@ -232,5 +233,6 @@ a {
 
 .list-color
 {
-    color:orange;
+    font-weight: bolder;
+    color:black;
 }

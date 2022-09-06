@@ -10,10 +10,10 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  
-  const socket = io("http://localhost:3000/");
-</script>>
-    <script  src="/javascript/app.js"></script>
+  const socket = io("http://localhost:3001");
+</script>
+  <script defer src="/utils/messages.js"></script>
+   <script defer src="/javascript/app.js"></script>
 </head>
 
 <body>
@@ -52,20 +52,22 @@
             </li>
         </ul>
     </div>
+    
     <main>
 
       {{{body}}}
-
+ 
    
     </main>
     <footer>
+    
     </footer>
   </div>
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
   {{/if}}
  
- 
+
 </body>
 
 </html>

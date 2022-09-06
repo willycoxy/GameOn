@@ -1,6 +1,6 @@
 
 const io =require("socket.io-client");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 let socket = io.connect(`http://localhost:${PORT}/chatroom`);
 
 console.log(`\n##############################################################`);
@@ -11,6 +11,10 @@ socket.on("welcome", (data) => {
     
     console.log(`\n***********************************************************************`);
     console.log(`Front-end  client console side using  - Socket Id: ${socket.id} \n ${data} `);
+    socket.emit("message",console.log(JSON.stringify({
+        type: "hello from client",
+        content: [ 3, "4" ]
+      })));
 });
 
 socket.on("testing",(res) => console.log(res));

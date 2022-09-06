@@ -12,7 +12,7 @@ const formatMessage = require("./utils/messages");
 const { SocketAddress } = require("net");
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 const server = http.createServer(app);
@@ -49,11 +49,6 @@ app.use(session(sess));
 // turns on routes
 app.use(routes);
 
-
-
-
-
-
 // turns on connection to database and server
 sequelize.sync({ force: true }).then(() => {
     server.listen(PORT, () =>{
@@ -66,6 +61,17 @@ sequelize.sync({ force: true }).then(() => {
 
 server.on("connection", (socket) => {
     // send a message to the client
+    socket.on('message',(data) => {
+    
+        
+        socket.emit("message2",data);
+});
+  
+        // send a message to the client
+        socket.emit("message",console.log(JSON.stringify({
+            type: "hello from server",
+            content: [ 1, "2" ]
+          })));
 
 
    socket.emit("message", console.log("Server is on and Welcome to Game On"));
@@ -79,12 +85,10 @@ const sportGameRooms = ["Game On Room", "Sport Room"];
 io.of("/chatroom").on('connection', (socket) => {
    
     console.log(`Server side using  - Socket Id: ${socket.id}`);
-    socket.emit("welcome", "Welcome you are connected back end -Socket ID#:"+socket.id+"\n"); 
-    socket.emit("testing",`You are the socket id that you are using #${socket.id}`);
+    socket.emit("welcome", "Welcome you are connected to the back end -Socket ID#:"+socket.id+"\n"); 
+    
+    socket.emit("testing",`You are using  the socket id #${socket.id}`);
     socket.emit('testing', `Socket id# ${socket.id} and his first two caracters : ${socket.id.substr(0,2)}\n` ); 
-
-   
-
 
     socket.on("joinRoom", (room) => {
         
@@ -101,4 +105,23 @@ io.of("/chatroom").on('connection', (socket) => {
     
 });
 
-module.exports  = PORT;
+server.on("connection", (socket) => {
+    // send a message to the client
+    socket.emit(JSON.stringify({
+      type: "hello from server",
+      content: [ 1, "2" ]
+    }));
+  
+    // receive a message from the client
+    socket.on("message", (data) => {
+      const packet = JSON.parse(data);
+  
+      switch (packet.type) {
+        case "hello from client":
+          // ...
+          break;
+      }
+    });
+  });
+
+ 

@@ -113,7 +113,7 @@ router.get("/", (req, res) => {
       res.redirect('/');
       return;
     }
-  
+    
     res.render('homepage');
   });
 
