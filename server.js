@@ -5,6 +5,7 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 const helpers = require("./utils/helpers");
+const axios = require('axios');
 
 
 const app = express();
@@ -41,6 +42,14 @@ app.get('/', (req, res) => {
 })
 
 app.get('/policy', (req, res) => {
+    // render your contact.handlebars
+})
+
+app.get('/chatroom', (req, res) => {
+    // render your contact.handlebars
+})
+
+app.get('/homepage', (req, res) => {
     // render your contact.handlebars
 })
 
