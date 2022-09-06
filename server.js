@@ -164,9 +164,6 @@ server.on("connection", (socket) => {
         socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
      });
   
-  
-  
-    
      // socket.emit('livechat', 'Game On live chat is connected!');
      // io.broadcast.emit('livechat', 'Server Side say: Live chat Hello world !');
   

@@ -29,7 +29,7 @@
 const d = new Date();
 let day = days[d.getDay()];
     var el3 = document.createElement('li');
-    el3.innerHTML =`Posted on ${day}  ${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`;
+    el3.innerHTML =`Written on ${day}  ${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`;
     document.querySelector('#ul1').appendChild(el3);
 
 
