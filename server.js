@@ -19,7 +19,7 @@ const server = http.createServer(app);
 
 
 const io = require('socket.io')(server, {cors:{origin:"*"}});
-
+/*
 var clients = 0;
 
 io.on('connection', function(socket){
@@ -28,22 +28,26 @@ io.on('connection', function(socket){
    socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
    socket.on('disconnect', function () {
       clients--;
-      socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'})
+      socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
    });
 
 
 
   
-    socket.emit('livechat', 'Game On live chat is connected!');
-    socket.broadcast.emit('livechat', 'Server Side say: Live chat Hello world !');
+   // socket.emit('livechat', 'Game On live chat is connected!');
+   // io.broadcast.emit('livechat', 'Server Side say: Live chat Hello world !');
 
-
+    socket.on('livechat', function (data) {
+        //socket.emit('livechat', 'Game On live chat is connected!');
+       // io.broadcast.emit('livechat', 'Server Side say: Live chat Hello world !');
+        io.sockets.emit('livechat', data);
+     });
 
 
 
 
 });
-
+*/
 const hbs = exphbs.create({ helpers });
 
 
@@ -149,7 +153,33 @@ server.on("connection", (socket) => {
 
  
 
+  var clients = 0;
 
+  io.on('connection', function(socket){
+     clients++;
+     socket.emit('newclientconnect',{ description: 'Hey, welcome!'});
+     socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
+     socket.on('disconnect', function () {
+        clients--;
+        socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
+     });
+  
+  
+  
+    
+     // socket.emit('livechat', 'Game On live chat is connected!');
+     // io.broadcast.emit('livechat', 'Server Side say: Live chat Hello world !');
+  
+      socket.on('livechat', function (data) {
+          //socket.emit('livechat', 'Game On live chat is connected!');
+         // io.broadcast.emit('livechat', 'Server Side say: Live chat Hello world !');
+          io.sockets.emit('livechat', data);
+       });
+  
+  
+  
+  
+  });
 
 
 

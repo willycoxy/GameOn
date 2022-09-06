@@ -19,7 +19,7 @@ socket.on("welcome", (data) => {
 
 socket.on("testing",(res) => console.log(res));
 
-socket.emit("joinRoom","Sport Room"); 
+socket.emit("joinRoom","Game On Room"); 
 
 socket.on("newUser", (res) => console.log(res));
 
