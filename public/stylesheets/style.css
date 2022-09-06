@@ -101,7 +101,7 @@ a {
 
 .chat-messages {
 	padding: 30px;
-	max-height: 500px;
+	max-height: 300px;
 	overflow-y: scroll;
 }
 
@@ -235,4 +235,10 @@ a {
 {
     font-weight: bolder;
     color:black;
+}
+
+.title-info
+{
+    font-weight: bolder;
+    color: #ffffff;
 }

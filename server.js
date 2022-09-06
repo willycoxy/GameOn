@@ -20,6 +20,17 @@ const server = http.createServer(app);
 
 const io = require('socket.io')(server, {cors:{origin:"*"}});
 
+var clients = 0;
+
+io.on('connection', function(socket){
+   clients++;
+   socket.emit('newclientconnect',{ description: 'Hey, welcome!'});
+   socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
+   socket.on('disconnect', function () {
+      clients--;
+      socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'})
+   });
+});
 
 const hbs = exphbs.create({ helpers });
 
@@ -125,3 +136,13 @@ server.on("connection", (socket) => {
   });
 
  
+
+
+
+
+
+
+
+
+
+
