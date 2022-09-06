@@ -30,6 +30,18 @@ io.on('connection', function(socket){
       clients--;
       socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'})
    });
+
+
+
+  
+    socket.emit('livechat', 'Game On live chat is connected!');
+    socket.broadcast.emit('livechat', ' Live chat Hello world Server Side!');
+
+
+
+
+
+
 });
 
 const hbs = exphbs.create({ helpers });

@@ -45,6 +45,15 @@ let day = days[d.getDay()];
     
     document.querySelector('#ul20').appendChild(el7);
 });
+
+socket.on('livechat',function(data){
+  
+    var el8 = document.createElement('li');
+el8.innerHTML = `${data} `;
+//socket.emit('livechat',{ description: message +'Hey, welcome!'});
+ //  socket.broadcast.emit('livechat',{ description: message + ' clients connected!'});
+document.querySelector('#ul1').appendChild(el8);
+});
  
     var el = document.createElement('li');
     el.innerHTML = `Message: ${message}`;
