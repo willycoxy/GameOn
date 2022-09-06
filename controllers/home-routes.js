@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Post, User, Comment } = require("../models");
+const { Post, User, Comment, Love, Dislike } = require("../models");
 
 router.get("/", (req, res) => {
   console.log(req.session);
@@ -9,7 +9,9 @@ router.get("/", (req, res) => {
         "id",
         "post_content",
         "title",
-        "created_at"
+        "created_at",
+        [sequelize.literal("(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)"), "love_count"],
+        [sequelize.literal('(SELECT COUNT(*) FROM dislike WHERE post.id = dislike.post_id)'), 'dislike_count']
       ],
       include: [
         {
@@ -95,7 +97,10 @@ router.get("/", (req, res) => {
       where: {
         id: req.params.id
       },
-      attributes: ["id", "title", "post_content", "created_at"],
+      attributes: ["id", "title", "post_content", "created_at", 
+      [sequelize.literal("(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)"), "love_count"],
+      [sequelize.literal('(SELECT COUNT(*) FROM dislike WHERE post.id = dislike.post_id)'), 'dislike_count']
+    ],
       include: [
         {
           model: Comment, 
@@ -129,20 +134,14 @@ router.get("/", (req, res) => {
   });
 
   router.get('/policy', (req, res) => {
-    // if (req.session.loggedIn) {
-    //   res.redirect('/');
-    //   return;
-    // }
-
     res.render('policy');
   });
 
-  router.get('/homepage', (req, res) => {
-    // if (req.session.loggedIn) {
-    //   res.redirect('/');
-    //   return;
-    // }
+  router.get('/livechat', (req, res) => {
+    res.render('livechat');
+  });
 
+  router.get('/homepage', (req, res) => {
     res.render('homepage');
   });
 
