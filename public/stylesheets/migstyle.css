@@ -242,3 +242,10 @@ a {
     font-weight: bolder;
     color: #ffffff;
 }
+
+#disconect
+{
+	font-weight: bolder;
+	list-style: none;
+	color:black
+}

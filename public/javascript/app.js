@@ -27,9 +27,7 @@ async function loginFormHandler1(event) {
     document.querySelector('#ul1').appendChild(el5);
 
     socket.on('newclientconnect',function(data){
-        var el7 = document.createElement('li');
-        el7.innerHTML = `${data.description} `;
-        document.querySelector('#ul20').appendChild(el7);
+       document.querySelector('#disconect').textContent =`${data.description} `;
     });
 
     socket.on('livechat',function(data){
