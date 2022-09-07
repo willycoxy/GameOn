@@ -48,7 +48,7 @@ app.get('/policy', (req, res) => {
     // render your contact.handlebars
 })
 
-app.get('/chatroom', (req, res) => {
+app.get('/livechat', (req, res) => {
     // render your contact.handlebars
 })
 

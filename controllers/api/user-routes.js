@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Post, Comment } = require("../../models");
+const { User, Post, Comment, Like } = require("../../models");
 
 // All routes have been tested in Insomnia.
 
@@ -30,7 +30,9 @@ router.get('/:id', (req, res) => {
           attributes: ['id', 'comment_text', 'created_at'],
           include: {
             model: Post,
-            attributes: ['title']
+            attributes: ['title'], 
+            through: Like, 
+            as: "liked_posts"
           }
         },
         {
@@ -137,6 +139,18 @@ router.delete("/:id", (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
+
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+
+});
+
+router.post("/register", (req, res) => {
 
     if (req.session.loggedIn) {
         req.session.destroy(() => {
