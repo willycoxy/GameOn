@@ -31,23 +31,23 @@ router.get("/", withAuth, (req, res) => {
         const posts = dbPostData.map(post => post.get({ plain: true }));
         res.render("forums", { posts, loggedIn: true });
     })
-    // testing multiple forums
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
-      res.render("forums-baseball", { posts, loggedIn: true });
-    })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
-      res.render("forums-basketball", { posts, loggedIn: true });
-    })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
-      res.render("forums-football", { posts, loggedIn: true });
-    })
-    .then(dbPostData => {
-      const posts = dbPostData.map(post => post.get({ plain: true }));
-      res.render("forums-hockey", { posts, loggedIn: true });
-    })
+    // // testing multiple forums
+    // .then(dbPostData => {
+    //   const posts = dbPostData.map(post => post.get({ plain: true }));
+    //   res.render("forums-baseball", { posts, loggedIn: true });
+    // })
+    // .then(dbPostData => {
+    //   const posts = dbPostData.map(post => post.get({ plain: true }));
+    //   res.render("forums-basketball", { posts, loggedIn: true });
+    // })
+    // .then(dbPostData => {
+    //   const posts = dbPostData.map(post => post.get({ plain: true }));
+    //   res.render("forums-football", { posts, loggedIn: true });
+    // })
+    // .then(dbPostData => {
+    //   const posts = dbPostData.map(post => post.get({ plain: true }));
+    //   res.render("forums-hockey", { posts, loggedIn: true });
+    // })
     // testing multiple forums
     .catch(err => {
         console.log(err);

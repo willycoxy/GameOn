@@ -5,7 +5,7 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 const helpers = require("./utils/helpers");
-const axios = require('axios');
+// const axios = require('axios');
 
 
 const app = express();
@@ -57,3 +57,4 @@ app.get('/homepage', (req, res) => {
 sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, () => console.log("Now listening"));
 });
+// test
