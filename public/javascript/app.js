@@ -1,7 +1,7 @@
-function loginFormHandler1(event) {
+async function loginFormHandler1(event) {
     event.preventDefault();
   
-    const message = document.querySelector('#message1').value.trim();
+    const message = await document.querySelector('#message1').value.trim();
 
     var el2 = document.createElement('div');
     el2.classList.add('message');
@@ -46,6 +46,8 @@ function loginFormHandler1(event) {
     el30.classList.add('message');
     document.querySelector('#ul1').appendChild(el30);
 
+
+    
     socket.emit('livechat', `\n${`Posted on ${day}  ${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`}`);
     socket.emit('livechat', `\n${`Time: ${d.getHours()}h:  ${ d.getMinutes()}min: ${ d.getSeconds()}sec`}`);
     socket.emit('livechat', `\nBy User ID# ${socket.id}`);

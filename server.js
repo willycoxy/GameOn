@@ -97,6 +97,8 @@ io.of("/chatroom").on('connection', (socket) => {
 });
 
 server.on("connection", (socket) => {
+
+    
     // send a message to the client
     socket.emit(JSON.stringify({
       type: "hello from server",
@@ -116,18 +118,23 @@ server.on("connection", (socket) => {
   });
 
   var clients = 0;
+  // roomName
+const roomLive = "roomLiveChat";
 
   io.on('connection', function(socket){
+
+socket.join(roomLive);
+
      clients++;
-     socket.emit('newclientconnect',{ description: 'Hey, welcome!'});
-     socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
+     socket.broadcast.to(roomLive).emit('newclientconnect',{ description: clients + ' clients connected!'});
      socket.on('disconnect', function () {
         clients--;
-        socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
+        socket.broadcast.to(roomLive).emit('newclientconnect',{ description: clients + ' clients connected!'});
      });
   
       socket.on('livechat', function (data) {
-          io.sockets.emit('livechat', data);
+        
+        socket.broadcast.to(roomLive).emit('livechat', data);
        });
   });
 
