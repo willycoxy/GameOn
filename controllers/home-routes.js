@@ -82,6 +82,18 @@ router.get("/", (req, res) => {
     res.render("add-thread-hockey");
   });
 
+  router.get("/add-thread-fantasy", (req, res) => {
+    res.render("add-thread-fantasy");
+  });
+
+  router.get("/add-thread-fantasy-baseball", (req, res) => {
+    res.render("add-thread-fantasy-baseball");
+  });
+
+  router.get("/add-thread-fantasy-football", (req, res) => {
+    res.render("add-thread-fantasy-football");
+  });
+
   // router.get("/forums", (req, res) => {
 
   //   // if (req.session.loggedIn) {
