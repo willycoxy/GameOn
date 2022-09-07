@@ -3,9 +3,11 @@
     <div class="row justify-content-center mb-3">
         <div class="post col-6">
         <section class="comment mb-3 p-3">
+            <div class="meta-1 mb-2">
+            {{user.username}} on {{format_date created_at}}
+            </div>
+            <div class="comment-text">
                 {{comment_text}}
-            <div class="text">
-                By {{user.username}} on {{format_date created_at}}
             </div>
         </section>
         </div>
