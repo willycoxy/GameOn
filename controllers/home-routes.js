@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Post, User, Comment } = require("../models");
+const { Post, User, Comment, Love, Dislike } = require("../models");
 
 router.get("/", (req, res) => {
   console.log(req.session);
@@ -9,7 +9,9 @@ router.get("/", (req, res) => {
         "id",
         "post_content",
         "title",
-        "created_at"
+        "created_at",
+        [sequelize.literal("(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)"), "love_count"],
+        [sequelize.literal('(SELECT COUNT(*) FROM dislike WHERE post.id = dislike.post_id)'), 'dislike_count']
       ],
       include: [
         {
@@ -40,24 +42,65 @@ router.get("/", (req, res) => {
       });
   });
 
-  router.get("/login", (req, res) => {
+  router.get("/register", (req, res) => {
 
-    // redirect to homepage if once logged in
+    // redirect to register if once logged in
     if (req.session.loggedIn) {
       res.redirect("/");
       return;
     }
 
 
-    res.render("login");
+    res.render("register");
   });
+
+  router.get("/add-thread", (req, res) => {
+
+    // redirect to register if once logged in
+    // if (req.session.loggedIn) {
+    //   res.redirect("/");
+    //   return;
+    // }
+
+
+    res.render("add-thread");
+  });
+
+  router.get("/add-thread-baseball", (req, res) => {
+    res.render("add-thread-baseball");
+  });
+
+  router.get("/add-thread-basketball", (req, res) => {
+    res.render("add-thread-basketball");
+  });
+
+  router.get("/add-thread-football", (req, res) => {
+    res.render("add-thread-football");
+  });
+
+  router.get("/add-thread-hockey", (req, res) => {
+    res.render("add-thread-hockey");
+  });
+
+  // router.get("/forums", (req, res) => {
+
+  //   // if (req.session.loggedIn) {
+  //   //   res.redirect("/");
+  //   //   return;
+  //   // }
+
+  //   res.render("forums");
+  // });
 
   router.get("/post/:id", (req, res) => {
     Post.findOne({
       where: {
         id: req.params.id
       },
-      attributes: ["id", "title", "post_content", "created_at"],
+      attributes: ["id", "title", "post_content", "created_at", 
+      [sequelize.literal("(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)"), "love_count"],
+      [sequelize.literal('(SELECT COUNT(*) FROM dislike WHERE post.id = dislike.post_id)'), 'dislike_count']
+    ],
       include: [
         {
           model: Comment, 
@@ -89,6 +132,7 @@ router.get("/", (req, res) => {
       res.status(500).json(err);
     });
   });
+
 
   router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
@@ -126,7 +170,12 @@ router.get("/", (req, res) => {
     res.render('register');
   });
 
-  
+  router.get('/policy', (req, res) => {
+    res.render('policy');
+  });
+
+
+
 
 
 module.exports = router;

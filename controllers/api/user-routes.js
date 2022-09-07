@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Post, Comment } = require("../../models");
+const { User, Post, Comment, Like } = require("../../models");
 
 // All routes have been tested in Insomnia.
 
@@ -30,7 +30,9 @@ router.get('/:id', (req, res) => {
           attributes: ['id', 'comment_text', 'created_at'],
           include: {
             model: Post,
-            attributes: ['title']
+            attributes: ['title'], 
+            through: Like, 
+            as: "liked_posts"
           }
         },
         {
@@ -69,7 +71,7 @@ router.post("/", (req, res) => {
     })
 });
 
-router.post("/login", (req, res) => {
+router.post("/register", (req, res) => {
     User.findOne({
         where: {
             email: req.body.email
