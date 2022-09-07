@@ -8,9 +8,6 @@ const helpers = require("./utils/helpers");
 
 //add on 
 const http = require('http');
-const formatMessage = require("./utils/messages");
-const { SocketAddress } = require("net");
-
 
 const PORT = process.env.PORT || 3001;
 
@@ -19,38 +16,8 @@ const server = http.createServer(app);
 
 
 const io = require('socket.io')(server, {cors:{origin:"*"}});
-/*
-var clients = 0;
 
-io.on('connection', function(socket){
-   clients++;
-   socket.emit('newclientconnect',{ description: 'Hey, welcome!'});
-   socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
-   socket.on('disconnect', function () {
-      clients--;
-      socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
-   });
-
-
-
-  
-   // socket.emit('livechat', 'Game On live chat is connected!');
-   // io.broadcast.emit('livechat', 'Server Side say: Live chat Hello world !');
-
-    socket.on('livechat', function (data) {
-        //socket.emit('livechat', 'Game On live chat is connected!');
-       // io.broadcast.emit('livechat', 'Server Side say: Live chat Hello world !');
-        io.sockets.emit('livechat', data);
-     });
-
-
-
-
-});
-*/
 const hbs = exphbs.create({ helpers });
-
-
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
@@ -77,14 +44,13 @@ app.use(session(sess));
 app.use(routes);
 
 // turns on connection to database and server
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
     server.listen(PORT, () =>{
         console.log(`\n##############################################################`);
         console.log(`Server side Now listening on port number  ${PORT}`);
         console.log(`\n##############################################################`);
     });
 });
-
 
 server.on("connection", (socket) => {
     // send a message to the client
@@ -100,10 +66,8 @@ server.on("connection", (socket) => {
             content: [ 1, "2" ]
           })));
 
-
    socket.emit("message", console.log("Server is on and Welcome to Game On"));
-   // console.log (socket.emit("message", formatMessage(socket, "Welcome to ChatCord!")));
-
+   
 });
 
 
@@ -151,8 +115,6 @@ server.on("connection", (socket) => {
     });
   });
 
- 
-
   var clients = 0;
 
   io.on('connection', function(socket){
@@ -164,18 +126,9 @@ server.on("connection", (socket) => {
         socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
      });
   
-     // socket.emit('livechat', 'Game On live chat is connected!');
-     // io.broadcast.emit('livechat', 'Server Side say: Live chat Hello world !');
-  
       socket.on('livechat', function (data) {
-          //socket.emit('livechat', 'Game On live chat is connected!');
-         // io.broadcast.emit('livechat', 'Server Side say: Live chat Hello world !');
           io.sockets.emit('livechat', data);
        });
-  
-  
-  
-  
   });
 
 
