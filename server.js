@@ -5,17 +5,21 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 const helpers = require("./utils/helpers");
-const axios = require('axios');
-const http = require('http')
 
+//add on 
+const http = require('http');
+
+const PORT = process.env.PORT || 3001;
 
 const app = express();
+const server = http.createServer(app);
+
+
+const io = require('socket.io')(server, {cors:{origin:"*"}});
+
 const hbs = exphbs.create({ helpers });
-const PORT = process.env.PORT || 3001;
-const server = http.createServer(app)
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const io = require('socket.io')(server, {cors:{origin:"*"}});
 
 const sess = {
     secret: "Game on!",
@@ -35,34 +39,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session(sess));
-app.use(express.static('public'));
 
 // turns on routes
 app.use(routes);
 
-app.get('/', (req, res) => {
-    // render your index.handblars
-})
-
-app.get('/policy', (req, res) => {
-    // render your contact.handlebars
-})
-
-app.get('/livechat', (req, res) => {
-    // render your contact.handlebars
-})
-
-app.get('/homepage', (req, res) => {
-    // render your contact.handlebars
-})
-
-// // turns on connection to database and server
-// sequelize.sync({ force: true }).then(() => {
-//     app.listen(PORT, () => console.log("Now listening"));
-// });
-
 // turns on connection to database and server
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
     server.listen(PORT, () =>{
         console.log(`\n##############################################################`);
         console.log(`Server side Now listening on port number  ${PORT}`);
@@ -87,6 +69,7 @@ server.on("connection", (socket) => {
    socket.emit("message", console.log("Server is on and Welcome to Game On"));
    
 });
+
 
 const sportGameRooms = ["Game On Room", "Sport Room"];
 
@@ -113,9 +96,9 @@ io.of("/chatroom").on('connection', (socket) => {
     
 });
 
-var clients = 0;
-
 server.on("connection", (socket) => {
+
+    
     // send a message to the client
     socket.emit(JSON.stringify({
       type: "hello from server",
@@ -134,18 +117,23 @@ server.on("connection", (socket) => {
     });
   });
 
+  var clients = 0;
+  // roomName
+const roomLive = "roomLiveChat";
 
-io.on('connection', function(socket){
-   clients++;
-   socket.emit('newclientconnect',{ description: 'Hey, welcome!'});
-   socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
-   socket.on('disconnect', function () {
-      clients--;
-      socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'});
-   });
+  io.on('connection', function(socket){
 
-    socket.on('livechat', function (data) {
-        io.sockets.emit('livechat', data);
+socket.join(roomLive);
+
+     clients++;
+     socket.broadcast.to(roomLive).emit('newclientconnect',{ description: clients + ' clients connected!'});
+     socket.on('disconnect', function () {
+        clients--;
+        socket.broadcast.to(roomLive).emit('newclientconnect',{ description: clients + ' clients connected!'});
      });
-});
-
+  
+      socket.on('livechat', function (data) {
+        
+        socket.broadcast.to(roomLive).emit('livechat', data);
+       });
+  });
