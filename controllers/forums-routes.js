@@ -63,7 +63,7 @@ router.get("/forums-baseball", withAuth, (req, res) => {
 })
 .then(dbPostData => {
     const posts = dbPostData.map(post => post.get({ plain: true }));
-    res.render("forums", { posts, loggedIn: true });
+    res.render("forums-baseball", { posts, loggedIn: true });
 })
 .catch(err => {
     console.log(err);
