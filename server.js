@@ -62,7 +62,7 @@ app.get('/homepage', (req, res) => {
 // });
 
 // turns on connection to database and server
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
     server.listen(PORT, () =>{
         console.log(`\n##############################################################`);
         console.log(`Server side Now listening on port number  ${PORT}`);

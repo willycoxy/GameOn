@@ -9,6 +9,11 @@ body {
 .navbar a {
     color: orange;
 }
+
+.post a {
+    color: blue;
+}
+
 .navbar button {
     color: orange;
 }
@@ -77,17 +82,19 @@ form {
     color: orange;
 }
 
+
 .post {
    
     background-color: rgb(13,32,45);;
 }
+
 
 .forums {
     border-bottom: 2px solid rgb(13,32,45);
 }
 
 .guidlines p {
-    color: orange;
+    color: aliceblue;
 }
 
 .guidlines {
@@ -145,3 +152,20 @@ li {
     color: orange;
 
 }
+
+
+.new-post-form {
+    background-color: rgb(13,32,45);
+}
+
+.registration {
+    background-color: rgb(13,32,45);
+}
+
+.comment-form {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+
+

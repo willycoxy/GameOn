@@ -1,14 +1,13 @@
 
     {{#each this}}
-    <div class="post">
-    <section class="comment mb-3 p-3">
-        <div class="meta">
-            {{comment_text}}
+    <div class="row justify-content-center mb-3">
+        <div class="post col-6">
+        <section class="comment mb-3 p-3">
+                {{comment_text}}
+            <div class="text">
+                By {{user.username}} on {{format_date created_at}}
+            </div>
+        </section>
         </div>
-        <div class="text">
-            
-            By {{user.username}} on {{format_date created_at}}
-        </div>
-    </section>
     </div>
     {{/each}}

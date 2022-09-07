@@ -156,10 +156,10 @@ router.get("/", (req, res) => {
   });
 
   router.get('/livechat', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
+    // if (req.session.loggedIn) {
+    //   res.redirect('/');
+    //   return;
+    // }
   
     res.render('livechat');
   });

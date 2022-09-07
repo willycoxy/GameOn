@@ -2,15 +2,15 @@
 
 {{#if loggedIn}}
 <form class="comment-form text-center d-flex col-12 justify-content-center">
-    <div class="form group col-6 justify-content-center">
-    <label for="comment section">Comment</label>
-    <textarea class="form-control" id="comment-text" rows="3" name="comment-body"></textarea>
-    <div class="single-post">
-        <button type="submit" class="btn btn-outline-light mt-3 mb-5">Submit</button>
-        <button type="submit" class="like-btn btn btn-outline-light mt-3 mb-5">Like</button>
-         <button type="submit" class="dislike-btn btn btn-outline-light mt-3 mb-5">Dislike</button>
+    <div class="form group col-5 justify-content-center">
+        <label for="comment section"></label>
+        <textarea class="form-control" placeholder="Comment" id="comment-text" rows="5" name="comment-body"></textarea>
+        <div class="single-post">
+            <button type="submit" class="btn btn-outline-light mt-3 mb-5">Submit</button>
+            <button type="submit" class="like-btn btn btn-outline-light mt-3 mb-5">Like</button>
+            <button type="submit" class="dislike-btn btn btn-outline-light mt-3 mb-5">Dislike</button>
+        </div>
     </div>
-</div>
 </form>
 {{/if}}
 
