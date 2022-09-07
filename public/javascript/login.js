@@ -1,3 +1,4 @@
+
 // Register Request
 
 async function signupFormHandler(event) {
@@ -56,3 +57,4 @@ async function loginFormHandler(event) {
 }
 
 document.querySelector(".login-form").addEventListener("submit", loginFormHandler);
+

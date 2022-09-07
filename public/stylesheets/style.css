@@ -9,7 +9,6 @@ body {
 .navbar a {
     color: orange;
 }
-
 .navbar button {
     color: orange;
 }
@@ -144,4 +143,5 @@ li {
 }
 .scoreboard {
     color: orange;
+
 }

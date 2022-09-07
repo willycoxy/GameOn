@@ -133,17 +133,49 @@ router.get("/", (req, res) => {
     });
   });
 
+
+  router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('login');
+  });
+
+  router.get('/chatroom', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('chatroom');
+  });
+
+  router.get('/homepage', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+    
+    res.render('homepage');
+  });
+
+  router.get('/register', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('register');
+  });
+
   router.get('/policy', (req, res) => {
     res.render('policy');
   });
 
-  router.get('/livechat', (req, res) => {
-    res.render('livechat');
-  });
 
-  router.get('/homepage', (req, res) => {
-    res.render('homepage');
-  });
+
 
 
 module.exports = router;
