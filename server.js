@@ -43,6 +43,8 @@ app.use(session(sess));
 // turns on routes
 app.use(routes);
 
+
+
 // turns on connection to database and server
 sequelize.sync({ force: false }).then(() => {
     server.listen(PORT, () =>{
@@ -122,10 +124,12 @@ server.on("connection", (socket) => {
 const roomLive = "roomLiveChat";
 
   io.on('connection', function(socket){
-
+    
 socket.join(roomLive);
 
      clients++;
+    
+     
      socket.broadcast.to(roomLive).emit('newclientconnect',{ description: clients + ' clients connected!'});
      socket.on('disconnect', function () {
         clients--;
@@ -133,9 +137,15 @@ socket.join(roomLive);
      });
   
       socket.on('livechat', function (data) {
-        
+       
+
         socket.broadcast.to(roomLive).emit('livechat', data);
        });
+
+
+       socket.on('newclientconnect', function(data){
+        document.querySelector('#disconect').textContent = `${data.description} `;
+     });
   });
 
 

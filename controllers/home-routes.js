@@ -109,12 +109,21 @@ router.get("/", (req, res) => {
   });
 
   router.get('/homepage', (req, res) => {
+   
+
+
+
     if (req.session.loggedIn) {
       res.redirect('/');
       return;
     }
     
+    
+
+
     res.render('homepage');
+   
+
   });
 
   router.get('/register', (req, res) => {

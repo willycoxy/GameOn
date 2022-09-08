@@ -8,10 +8,14 @@
   <link rel="stylesheet" href="/stylesheets/migstyle.css">
   
   <script src="/socket.io/socket.io.js"></script>
-  <!-- <script>
+ 
+  <script>
     const socket = io();
+    socket.on('newclientconnect', function(data){
+    document.querySelector('#disconect').textContent = `${data.description} `;
+     });
   </script>
- -->
+ 
 </head>
 
 <body>
