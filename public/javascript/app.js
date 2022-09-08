@@ -1,5 +1,8 @@
 async function loginFormHandler1(event) {
     event.preventDefault();
+    socket.on('newclientconnect', function(data){
+        document.querySelector('#disconect').textContent = `${data.description} `;
+    });
   
     const message = await document.querySelector('#message1').value.trim();
 
@@ -26,14 +29,10 @@ async function loginFormHandler1(event) {
     el5.innerHTML = `Connection Status: ${socket.connected} `;
     document.querySelector('#ul1').appendChild(el5);
 
-    socket.on('newclientconnect',function(data){
-       document.querySelector('#disconect').textContent =`${data.description} `;
-    });
-
     socket.on('livechat',function(data){
         var el8 = document.createElement('li');
         el8.innerHTML = `${data} `;
-        document.querySelector('#ul1').appendChild(el8);
+        document.querySelector('#ul1').appendChild(el8); 
     });
  
     var el = document.createElement('li');
@@ -44,9 +43,8 @@ async function loginFormHandler1(event) {
     el30.classList.add('message');
     document.querySelector('#ul1').appendChild(el30);
 
-
-    
     socket.emit('livechat', `\n${`Posted on ${day}  ${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`}`);
+    
     socket.emit('livechat', `\n${`Time: ${d.getHours()}h:  ${ d.getMinutes()}min: ${ d.getSeconds()}sec`}`);
     socket.emit('livechat', `\nBy User ID# ${socket.id}`);
     socket.emit('livechat', `Say: ${message}`);
