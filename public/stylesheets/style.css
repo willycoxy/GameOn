@@ -114,7 +114,7 @@ li {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
+    text-align: left;
     color: orange;
     margin: auto;
     width: 75%;
@@ -124,7 +124,7 @@ li {
     justify-content: left;
     text-align: left;
     background-color: rgb(30, 56, 75);
-    border: 4px solid rgb(109, 144, 168);
+    border: 10px solid black;
 }
 
 .body-node {
