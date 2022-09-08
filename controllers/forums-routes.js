@@ -36,29 +36,7 @@ router.get("/", withAuth, (req, res) => {
         res.status(500).json(err);
     });
 });
-//test 3
-router.get("/forums-baseball", (req, res) => {
-  res.render("forums-baseball", { posts, loggedIn: true });
-});
-router.get("/forums-basketball", (req, res) => {
-  res.render("forums-basketball", { posts, loggedIn: true });
-});
-router.get("/forums-hockey", (req, res) => {
-  res.render("forums-hockey", { posts, loggedIn: true });
-});
-router.get("/forums-football", (req, res) => {
-  res.render("forums-football", { posts, loggedIn: true });
-});
-router.get("/forums-fantasy", (req, res) => {
-  res.render("forums-fantasy", { posts, loggedIn: true });
-});
-router.get("/forums-fantasy-baseball", (req, res) => {
-  res.render("forums-fantasy-baseball", { posts, loggedIn: true });
-});
-router.get("/forums-fantasy-football", (req, res) => {
-  res.render("forums-fantasy-football", { posts, loggedIn: true });
-});
-//test 3
+
 router.get("/edit/:id", withAuth, (req, res) => {
     Post.findByPk(req.params.id, {
       attributes: [
