@@ -20,7 +20,7 @@
     <header class="navbar d-flex p-3">
       <h1 class="header-img"><a class="nav-link" href="/homepage"><img src="/images/ggcbear.jpg" alt="Game On!"></a></h1> 
       <nav>
-        <button type="button" class="btn btn-outline-light" data-toggle="dropdown" aria-expanded="false" data-offset="10,20">Log in</button>
+        
         <form class="login-form dropdown-menu dropdown-menu-right p-2">
           <div class="form-group">
             <label for="exampleDropdownFormEmail2">Email address</label>
@@ -38,12 +38,16 @@
               </label>
             </div>
           </div>
-          <button type="submit" class="btn btn-outline-light">Log in</button>
+          <button type="submit" class="btn btn-outline-light">Login</button>
         </form>
 
+         {{#if loggedIn}}
+          <button type="submit" id="logout" class="btn btn-outline-light">Logout</button>
+          {{else}}
+          <button type="button" class="btn btn-outline-light" data-toggle="dropdown" aria-expanded="false" data-offset="10,20">Login</button>
+          {{/if}}
+
         <a href="/register"><button class="btn btn-outline-light">Register</button></a>
-
-
       </nav>
     </header>
     <div class="navbar d-flex">
@@ -73,12 +77,14 @@
       <p class="footer">copyright &copy;2021 <a href="#">Game On!</a> For sports fans created by sports fans</p>
     </footer>
   </div>
-  
+  {{#if loggedIn}}
+<script src="/javascript/logout.js"></script>
+{{/if}}
 
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-{{!-- <script src="/javascript/login.js"></script> --}}
+
 
 </body>
 

@@ -44,9 +44,8 @@ router.get("/", (req, res) => {
 
   router.get("/register", (req, res) => {
 
-    // redirect to register if once logged in
     if (req.session.loggedIn) {
-      res.redirect("/");
+      res.redirect("homepage");
       return;
     }
 
@@ -55,13 +54,6 @@ router.get("/", (req, res) => {
   });
 
   router.get("/add-thread", (req, res) => {
-
-    // redirect to register if once logged in
-    // if (req.session.loggedIn) {
-    //   res.redirect("/");
-    //   return;
-    // }
-
 
     res.render("add-thread");
   });
@@ -94,15 +86,6 @@ router.get("/", (req, res) => {
     res.render("add-thread-fantasy-football");
   });
 
-  // router.get("/forums", (req, res) => {
-
-  //   // if (req.session.loggedIn) {
-  //   //   res.redirect("/");
-  //   //   return;
-  //   // }
-
-  //   res.render("forums");
-  // });
 
   router.get("/post/:id", (req, res) => {
     Post.findOne({
@@ -146,21 +129,8 @@ router.get("/", (req, res) => {
   });
 
 
-  router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
-  
-    res.render('login');
-  });
-
   router.get('/livechat', (req, res) => {
-    // if (req.session.loggedIn) {
-    //   res.redirect('/');
-    //   return;
-    // }
-  
+   
     res.render('livechat');
   });
 
@@ -171,15 +141,6 @@ router.get("/", (req, res) => {
     }
     
     res.render('homepage');
-  });
-
-  router.get('/register', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
-  
-    res.render('register');
   });
 
   router.get('/policy', (req, res) => {
