@@ -85,6 +85,29 @@ router.get("/", (req, res) => {
   router.get("/add-thread-fantasy-football", (req, res) => {
     res.render("add-thread-fantasy-football");
   });
+  //test 4
+  router.get("/forums-baseball", (req, res) => {
+    res.render("forums-baseball");
+  });
+  router.get("/forums-basketball", (req, res) => {
+    res.render("forums-basketball");
+  });
+  router.get("/forums-hockey", (req, res) => {
+    res.render("forums-hockey");
+  });
+  router.get("/forums-football", (req, res) => {
+    res.render("forums-football");
+  });
+  router.get("/forums-fantasy", (req, res) => {
+    res.render("forums-fantasy");
+  });
+  router.get("/forums-fantasy-baseball", (req, res) => {
+    res.render("forums-fantasy-baseball");
+  });
+  router.get("/forums-fantasy-football", (req, res) => {
+    res.render("forums-fantasy-football");
+  });
+  //test 4
 
 
   router.get("/post/:id", (req, res) => {
