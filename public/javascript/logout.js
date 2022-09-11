@@ -6,7 +6,7 @@ async function logout() {
     });
 
     if (response.ok) {
-        document.location.replace("/");
+        document.location.replace("register");
     } else {
         alert(response.statusText);
     }
