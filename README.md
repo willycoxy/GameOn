@@ -29,8 +29,8 @@ https://morning-sands-74627.herokuapp.com/
 
 ![image](https://user-images.githubusercontent.com/104735194/189487901-2d5c7f9e-0752-495d-ae26-8218722b185d.png)
 
-![image](./public/images/12345.png)
+![alt text](public/images/12345.png)
 
-![image](./public/images/12346.png)
+![alt text](public/images/12346.png)
 
 ### ©️2022 Game On
