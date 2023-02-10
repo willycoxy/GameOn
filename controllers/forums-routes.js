@@ -5,9 +5,6 @@ const withAuth = require("../utils/auth");
 
 router.get("/", withAuth, (req, res) => {
     Post.findAll({
-        where: {
-            user_id: req.session.user_id
-        },
         attributes: ["id", "post_content", "title", "created_at",
         [sequelize.literal('(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)'), 'love_count'],
         [sequelize.literal('(SELECT COUNT(*) FROM dislike WHERE post.id = dislike.post_id)'), 'dislike_count']
